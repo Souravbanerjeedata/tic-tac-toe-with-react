@@ -5,6 +5,12 @@ import GameBoard from "./components/GameBoard.jsx";
 import Log from "./components/Log.jsx";
 import { WINNING_COMBINATIONS } from "./winning-combinations.js";
 
+const initialGameBoard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null],
+];
+
 function deriveActivePlayer(gameTurns) {
   let currentPlayer = "X";
 
@@ -12,6 +18,15 @@ function deriveActivePlayer(gameTurns) {
     currentPlayer = "O";
   }
   return currentPlayer;
+}
+
+let gameBoard = initialGameBoard;
+
+for (const turn of turns) {
+  const { square, player } = turn;
+  const { row, col } = square;
+
+  gameBoard[row][col] = player;
 }
 
 function App() {
